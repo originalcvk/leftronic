@@ -219,7 +219,7 @@ Start by downloading the most recent version of our Ruby API at https://github.c
 
 ### Dependencies
 
-[RubyGems](http://rubygems.org/pages/download), [Curb](http://rubygems.org/gems/curb), and [JSON](http://rubygems.org/gems/json).
+[RubyGems](http://rubygems.org/pages/download), [Curb](http://rubygems.org/gems/curb), and [JSON](http://rubygems.org/gems/json). We recommend installing them with the [RubyGems](http://rubygems.org/pages/download) installer.
 
 ```ruby
 require 'rubygems'
@@ -227,30 +227,36 @@ require 'curb'
 require 'json'
 ```
 
-Edit the file, adding your API key here:
+Import the file. Your location may vary.
 
 ```ruby
-$accessKey = "YOUR_ACCESS_KEY"
+require 'api_ruby'
 ```
 
-Here are some example functions to push to your dashboard. Be sure you have configured the correct widgets to accept custom data points. Also, be sure that you have entered your API access key correctly. *Note*: The first argument passed to the functions ("update" in these examples) is the name of your class instance.
+Create a class instance with your API key. Feel free to name it whatever you'd like.
+
+```ruby
+update = Leftronic.new("YOUR_ACCESS_KEY")
+```
+
+Here are some example functions to push to your dashboard. Be sure you have configured the correct widgets to accept custom data points. Also, be sure that you have entered your API access key correctly.
 
 Let's start with pushing a number to a widget.
 
 ```ruby
-Leftronic.pushNumber("yourNumberStream", 14600)
+update = Leftronic.pushNumber("yourNumberStream", 14600)
 ```
 
 Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California.
 
 ```ruby
-Leftronic.pushLocation("yourGeoStream", 37.8, -122.6)
+update = Leftronic.pushLocation("yourGeoStream", 37.8, -122.6)
 ```
 
 Here's how you push a title and message to a text feed widget.
 
 ```ruby
-Leftronic.pushText("yourTextStream", "This is my title.", "Hello World!")
+update = Leftronic.pushText("yourTextStream", "This is my title.", "Hello World!")
 ```
 
 Let's push an array of names and values to a leaderboard widget. Be sure to create the array first (you may call it whatever you'd like). Be careful to use the proper syntax. Next, push the array to your widget.
@@ -258,7 +264,7 @@ Let's push an array of names and values to a leaderboard widget. Be sure to crea
 ```ruby
 leaderArray = Array[{"name" => "Johnny", "value" => 84}, {"name" => "Jamie", "value" => 75}, {"name" => "Lance", "value" => 62}]
 
-Leftronic.pushBoard("yourBoardStream", leaderArray)
+update = Leftronic.pushBoard("yourBoardStream", leaderArray)
 ```
 
 Similar to the last example, let's push a list of items to a list widget. Same rules as last time.
@@ -266,7 +272,7 @@ Similar to the last example, let's push a list of items to a list widget. Same r
 ```ruby
 listArray = Array[{"listItem" => "Elizabeth"}, {"listItem" => "Marshall"}, {"listItem" => "Claire"}, {"listItem" => "Nolan"}]
 
-Leftronic.pushList("yourListStream", listArray)
+update = Leftronic.pushList("yourListStream", listArray)
 ```
 
 Java
