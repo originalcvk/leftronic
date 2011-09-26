@@ -2,16 +2,22 @@ require 'rubygems'
 require 'curb'
 require 'json'
 
-# Your secret API access key (global variable)
-$accessKey = "YOUR_ACCESS_KEY"
-
 class Leftronic
 
+  attr_accessor :accessKey
+  
+  # Class variable
+  def initialize(accessKey)
+      @@accessKey = accessKey
+  end
+
   def self.pushNumber(streamName, point)
-      authKey = $accessKey
-      parameters = {"accessKey" => authKey, "streamName" => streamName, "point" => point}
+      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => point}
+      # Convert to JSON
       jsonData = parameters.to_json()
+      # Form request
       urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
+      # Make request
           ) do |curl|
             curl.headers['Accept'] = 'application/json'
             curl.headers['Content-Type'] = 'application/json'
@@ -19,11 +25,13 @@ class Leftronic
   end
 
   def self.pushLocation(streamName, lati, longi)
-      authKey = $accessKey
-      parameters = {"accessKey" => authKey, "streamName" => streamName, "point" => {
+      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "latitude" => lati, "longitude" => longi}}
+      # Convert to JSON
       jsonData = parameters.to_json()
+      # Form request
       urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
+      # Make request
           ) do |curl|
             curl.headers['Accept'] = 'application/json'
             curl.headers['Content-Type'] = 'application/json'
@@ -31,11 +39,13 @@ class Leftronic
   end
   
   def self.pushText(streamName, myTitle, myMsg)
-      authKey = $accessKey
-      parameters = {"accessKey" => authKey, "streamName" => streamName, "point" => {
+      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "title" => myTitle, "msg" => myMsg}}
+      # Convert to JSON
       jsonData = parameters.to_json()
+      # Form request
       urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
+      # Make request
           ) do |curl|
             curl.headers['Accept'] = 'application/json'
             curl.headers['Content-Type'] = 'application/json'
@@ -43,11 +53,13 @@ class Leftronic
   end
 
   def self.pushBoard(streamName, leaderArray)
-      authKey = $accessKey
-      parameters = {"accessKey" => authKey, "streamName" => streamName, "point" => {
+      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "leaderboard" => leaderArray}}
+      # Convert to JSON
       jsonData = parameters.to_json()
+      # Form request
       urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
+      # Make request
           ) do |curl|
             curl.headers['Accept'] = 'application/json'
             curl.headers['Content-Type'] = 'application/json'
@@ -55,11 +67,13 @@ class Leftronic
   end
   
   def self.pushList(streamName, listArray)
-      authKey = $accessKey
-      parameters = {"accessKey" => authKey, "streamName" => streamName, "point" => {
+      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "list" => listArray}}
+      # Convert to JSON
       jsonData = parameters.to_json()
+      # Form request
       urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
+      # Make CURL request
           ) do |curl|
             curl.headers['Accept'] = 'application/json'
             curl.headers['Content-Type'] = 'application/json'
