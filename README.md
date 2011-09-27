@@ -215,11 +215,11 @@ api_python.Leftronic.pushList(update, "yourListStream", listArray)
 Ruby
 ----
 
+**_Note_**: We also have a Leftronic Ruby Gem that offers the same functionality. You can download it on [Github](https://github.com/sonofabell/leftronic-ruby) or on [RubyGems](https://rubygems.org/gems/leftronicapi).
+
 Start by downloading the most recent version of our Ruby API at https://github.com/sonofabell/leftronic/blob/master/api_ruby.rb.
 
 ### Dependencies
-
-**_Note_**: We also have a Leftronic Ruby Gem that offers the same functionality. You can download it on [Github](https://github.com/sonofabell/leftronic-ruby) or on [RubyGems](https://rubygems.org/gems/leftronicapi).
 
 [RubyGems](http://rubygems.org/pages/download), [Curb](http://rubygems.org/gems/curb), and [JSON](http://rubygems.org/gems/json). We recommend installing them with the [RubyGems](http://rubygems.org/pages/download) installer.
 
