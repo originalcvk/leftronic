@@ -12,6 +12,7 @@ class Leftronic
   end
 
   def self.pushNumber(streamName, point)
+      ### Pushing a number to a Number, Horizontal/Vertical Bar, or Dial widget
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => point}
       # Convert to JSON
       jsonData = parameters.to_json()
@@ -24,7 +25,8 @@ class Leftronic
           end
   end
 
-  def self.pushLocation(streamName, lati, longi)
+  def self.pushGeo(streamName, lati, longi)
+      ### Pushing a geographic location (latitude and longitude) to a Map widget
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "latitude" => lati, "longitude" => longi}}
       # Convert to JSON
@@ -39,6 +41,7 @@ class Leftronic
   end
   
   def self.pushText(streamName, myTitle, myMsg)
+      ### Pushing a title and message to a Text Feed widget
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "title" => myTitle, "msg" => myMsg}}
       # Convert to JSON
@@ -52,7 +55,8 @@ class Leftronic
           end
   end
 
-  def self.pushBoard(streamName, leaderArray)
+  def self.pushLeaderboard(streamName, leaderArray)
+      ### Pushing an array to a Leaderboard widget
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "leaderboard" => leaderArray}}
       # Convert to JSON
@@ -67,6 +71,7 @@ class Leftronic
   end
   
   def self.pushList(streamName, listArray)
+      ### Pushing an array to a List widget
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
         "list" => listArray}}
       # Convert to JSON

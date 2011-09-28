@@ -18,8 +18,8 @@ class Leftronic(object):
         # Make request
         urllib2.urlopen("https://beta.leftronic.com/customSend/", jsonData)
 
-    def pushLocation(self, streamName, lati, longi):
-        '''Pushing a geographic location to a Map widget'''
+    def pushGeo(self, streamName, lati, longi):
+        '''Pushing a geographic location (latitude and longitude) to a Map widget'''
         parameters = {"accessKey": accessKey, "streamName": streamName, "point": {
             "latitude": lati, "longitude": longi
         }}
@@ -29,7 +29,7 @@ class Leftronic(object):
         urllib2.urlopen("https://beta.leftronic.com/customSend/", jsonData)
 
     def pushText(self, streamName, myTitle, myMsg):
-        '''Pushing a message to a Text Feed widget'''
+        '''Pushing a title and message to a Text Feed widget'''
         parameters = {"accessKey": accessKey, "streamName": streamName, "point": {
             "title": myTitle, "msg": myMsg
         }}
@@ -38,8 +38,8 @@ class Leftronic(object):
         # Make request
         urllib2.urlopen("https://beta.leftronic.com/customSend/", jsonData)
 
-    def pushBoard(self, streamName, leaderArray):
-        '''Pushing to the Leaderboard widget'''
+    def pushLeaderboard(self, streamName, leaderArray):
+        '''Pushing an array to a Leaderboard widget'''
         parameters = {"accessKey": accessKey, "streamName": streamName, "point": {
             "leaderboard": leaderArray
         }}
@@ -49,7 +49,7 @@ class Leftronic(object):
         urllib2.urlopen("https://beta.leftronic.com/customSend/", jsonData)
 
     def pushList(self, streamName, listArray):
-        '''Pushing to the List widget'''
+        '''Pushing an array to a List widget'''
         parameters = {"accessKey": accessKey, "streamName": streamName, "point": {
             "list": listArray
         }}

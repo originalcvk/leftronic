@@ -8,6 +8,7 @@
 var accessKey = "YOUR_ACCESS_KEY";
 
 function pushNumber(streamName, point) {
+	/* Pushing a number to a Number, Horizontal/Vertical Bar, or Dial widget */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
@@ -18,7 +19,8 @@ function pushNumber(streamName, point) {
     $.post("https://beta.leftronic.com/customSend/", jsonData);
 }
 
-function pushLocation(streamName, lati, longi) {
+function pushGeo(streamName, lati, longi) {
+	/* Pushing a geographic location (latitude and longitude) to a Map widget */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
@@ -30,6 +32,7 @@ function pushLocation(streamName, lati, longi) {
 }
 
 function pushText(streamName, myTitle, myMsg) {
+	/* Pushing a title and message to a Text Feed widget */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
@@ -40,7 +43,8 @@ function pushText(streamName, myTitle, myMsg) {
     $.post("https://beta.leftronic.com/customSend/", jsonData);
 }
 
-function pushBoard(streamName, leaderArray) {
+function pushLeaderboard(streamName, leaderArray) {
+	/* Pushing an array to a Leaderboard widget */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
@@ -52,6 +56,7 @@ function pushBoard(streamName, leaderArray) {
 }
 
 function pushList(streamName, listArray) {
+	/* Pushing an array to a List widget */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
