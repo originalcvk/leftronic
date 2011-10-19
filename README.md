@@ -69,10 +69,14 @@ Let's start with pushing a number to a widget.
 pushNumber("yourNumberStream", 14600);
 ```
 
-Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California.
+Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California. Optionally, if you'd like to set the color of your map point simply specify that in your function call. *Note*: only red, blue, green, purple, and yellow colors are supported at this time. Incorrect or missing color will default to red.
 
 ```javascript
 pushGeo("yourGeoStream", 37.8, -122.6);
+```
+
+```javascript
+pushGeo("yourGeoStream", 37.8, -122.6, "blue");
 ```
 
 Here's how you push a title and message to a text feed widget.
@@ -120,10 +124,14 @@ Let's start with pushing a number to a widget.
 $update->pushNumber("yourNumberStream", 14600);
 ```
 
-Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California.
+Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California. Optionally, if you'd like to set the color of your map point simply specify that in your function call. *Note*: only red, blue, green, purple, and yellow colors are supported at this time. Incorrect or missing color will default to red.
 
 ```php
 $update->pushGeo("yourGeoStream", 37.8, -122.6);
+```
+
+```php
+$update->pushGeo("yourGeoStream", 37.8, -122.6, "blue");
 ```
 
 Here's how you push a title and message to a text feed widget.
@@ -181,19 +189,23 @@ Here are some example functions to push to your dashboard. Be sure you have conf
 Let's start with pushing a number to a widget.
 
 ```python
-Leftronic.pushNumber(update, "yourNumberStream", 14600)
+update.pushNumber("yourNumberStream", 14600)
 ```
 
-Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California.
+Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California. Optionally, if you'd like to set the color of your map point simply specify that in your function call. *Note*: only red, blue, green, purple, and yellow colors are supported at this time. Incorrect or missing color will default to red.
 
 ```python
-Leftronic.pushGeo(update, "yourGeoStream", 37.8, -122.6)
+update.pushGeo("yourGeoStream", 37.8, -122.6)
+```
+
+```python
+update.pushGeo("yourGeoStream", 37.8, -122.6, "blue")
 ```
 
 Here's how you push a title and message to a text feed widget.
 
 ```python
-Leftronic.pushText(update, "yourTextStream", "This is my title.", "Hello World!")
+update.pushText("yourTextStream", "This is my title.", "Hello World!")
 ```
 
 Let's push an array of names and values to a leaderboard widget. Be sure to create the array first (you may call it whatever you'd like). Be careful to use the proper syntax. Next, push the array to your widget.
@@ -201,7 +213,7 @@ Let's push an array of names and values to a leaderboard widget. Be sure to crea
 ```python
 leaderArray = [{"name": "Johnny", "value": 84}, {"name": "Jamie", "value": 75}, {"name": "Lance", "value": 62}]
 
-Leftronic.pushLeaderboard(update, "yourBoardStream", leaderArray)
+update.pushLeaderboard("yourBoardStream", leaderArray)
 ```
 
 Similar to the last example, let's push a list of items to a list widget. Same rules as last time.
@@ -209,7 +221,7 @@ Similar to the last example, let's push a list of items to a list widget. Same r
 ```python
 listArray = [{"listItem": "Elizabeth"}, {"listItem": "Marshall"}, {"listItem": "Claire"}, {"listItem": "Nolan"}]
 
-Leftronic.pushList(update, "yourListStream", listArray)
+update.pushList("yourListStream", listArray)
 ```
 
 Ruby
@@ -249,11 +261,16 @@ Let's start with pushing a number to a widget.
 update = Leftronic.pushNumber("yourNumberStream", 14600)
 ```
 
-Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California.
+Now we'll push some geographic coordinates to a map widget. You can use either the U.S. or world map widgets. The first coordinate (37.8) is the latitude and the second coordinate (-122.6) is the longitude. If your request is successful, you should see a data point appear on San Francisco, California. Optionally, if you'd like to set the color of your map point simply specify that in your function call. *Note*: only red, blue, green, purple, and yellow colors are supported at this time. Incorrect or missing color will default to red.
 
 ```ruby
 update = Leftronic.pushGeo("yourGeoStream", 37.8, -122.6)
 ```
+
+```ruby
+update = Leftronic.pushGeo("yourGeoStream", 37.8, -122.6, "blue")
+```
+
 
 Here's how you push a title and message to a text feed widget.
 
