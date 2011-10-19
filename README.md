@@ -184,7 +184,7 @@ Create a class instance with your API key. Feel free to name it whatever you'd l
 update = Leftronic("YOUR_ACCESS_KEY")
 ```
 
-Here are some example functions to push to your dashboard. Be sure you have configured the correct widgets to accept custom data points. Also, be sure that you have entered your API access key correctly. *Note*: The first argument passed to the functions ("update" in these examples) is the name of your class instance.
+Here are some example functions to push to your dashboard. Be sure you have configured the correct widgets to accept custom data points. Also, be sure that you have entered your API access key correctly.
 
 Let's start with pushing a number to a widget.
 
