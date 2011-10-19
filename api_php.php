@@ -25,10 +25,12 @@ class Leftronic {
 		$result = curl_exec($ch);
 	}
 
-	public function pushLocation($streamName, $lati, $longi) {
+	public function pushGeo($streamName, $lati, $longi, $color=Null) {
 		### Pushing a geographic location (latitude and longitude) to a Map widget
+		# Color can also be passed (red, green, blue, yellow, or purple).
+		# Default color is red.
 		$parameters = array('accessKey' => $this->accessKey, 'streamName' => $streamName, 'point' => array(
-			'latitude' => $lati, 'longitude' => $longi));
+			'latitude' => $lati, 'longitude' => $longi, 'color' => $color));
 		# Convert to JSON
 		$jsonData = json_encode($parameters);
 		# cURL options

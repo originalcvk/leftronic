@@ -25,10 +25,12 @@ class Leftronic
           end
   end
 
-  def self.pushGeo(streamName, lati, longi)
+  def self.pushGeo(streamName, lati, longi, color=nil)
       ### Pushing a geographic location (latitude and longitude) to a Map widget
+      # Color can also be passed (red, green, blue, yellow, or purple).
+      # Default color is red.
       parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
-        "latitude" => lati, "longitude" => longi}}
+        "latitude" => lati, "longitude" => longi, "color" => color}}
       # Convert to JSON
       jsonData = parameters.to_json()
       # Form request

@@ -18,10 +18,12 @@ class Leftronic(object):
         # Make request
         urllib2.urlopen("https://beta.leftronic.com/customSend/", jsonData)
 
-    def pushGeo(self, streamName, lati, longi):
-        '''Pushing a geographic location (latitude and longitude) to a Map widget'''
+    def pushGeo(self, streamName, lati, longi, color=None):
+        '''Pushing a geographic location (latitude and longitude) to a Map widget.
+        Color can also be passed (red, green, blue, yellow, or purple).
+        Default color is red.'''
         parameters = {"accessKey": accessKey, "streamName": streamName, "point": {
-            "latitude": lati, "longitude": longi
+            "latitude": lati, "longitude": longi, "color": color
         }}
         # Convert to JSON
         jsonData = json.dumps(parameters)

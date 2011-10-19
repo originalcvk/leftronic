@@ -19,12 +19,14 @@ function pushNumber(streamName, point) {
     $.post("https://beta.leftronic.com/customSend/", jsonData);
 }
 
-function pushGeo(streamName, lati, longi) {
-	/* Pushing a geographic location (latitude and longitude) to a Map widget */
+function pushGeo(streamName, lati, longi, color) {
+	/* Pushing a geographic location (latitude and longitude) to a Map widget.
+	 * Color can also be passed (red, green, blue, yellow, or purple).
+	 * Default color is red. */
     var parameters = {};
     parameters["accessKey"] = accessKey;
     parameters["streamName"] = streamName;
-    parameters["point"] = {"latitude": lati, "longitude": longi};
+    parameters["point"] = {"latitude": lati, "longitude": longi, "color": color};
     // Convert to JSON
     var jsonData = JSON.stringify(parameters);
     // Make request (jQuery)
