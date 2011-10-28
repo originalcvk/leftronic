@@ -4,87 +4,49 @@ require 'json'
 
 class Leftronic
 
-  attr_accessor :accessKey
-  
-  # Class variable
-  def initialize(accessKey)
-      @@accessKey = accessKey
+  def initialize(key, url='https://beta.leftronic.com/customSend/')
+    @key = key
+    @url = url
   end
 
-  def self.pushNumber(streamName, point)
-      ### Pushing a number to a Number, Horizontal/Vertical Bar, or Dial widget
-      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => point}
-      # Convert to JSON
-      jsonData = parameters.to_json()
-      # Form request
-      urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
-      # Make request
-          ) do |curl|
-            curl.headers['Accept'] = 'application/json'
-            curl.headers['Content-Type'] = 'application/json'
-          end
+  # Pushing anything to a widget
+  def push(stream, parameters)
+    parameters.merge!({ 'accessKey' => @key, 'streamName' => stream })
+    post parameters
   end
 
-  def self.pushGeo(streamName, lati, longi, color=nil)
-      ### Pushing a geographic location (latitude and longitude) to a Map widget
-      # Color can also be passed (red, green, blue, yellow, or purple).
-      # Default color is red.
-      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
-        "latitude" => lati, "longitude" => longi, "color" => color}}
-      # Convert to JSON
-      jsonData = parameters.to_json()
-      # Form request
-      urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
-      # Make request
-          ) do |curl|
-            curl.headers['Accept'] = 'application/json'
-            curl.headers['Content-Type'] = 'application/json'
-          end
-  end
-  
-  def self.pushText(streamName, myTitle, myMsg)
-      ### Pushing a title and message to a Text Feed widget
-      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
-        "title" => myTitle, "msg" => myMsg}}
-      # Convert to JSON
-      jsonData = parameters.to_json()
-      # Form request
-      urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
-      # Make request
-          ) do |curl|
-            curl.headers['Accept'] = 'application/json'
-            curl.headers['Content-Type'] = 'application/json'
-          end
+  # Pushing a Number to a widget
+  def push_number(stream, point)
+    push stream, 'point' => point
   end
 
-  def self.pushLeaderboard(streamName, leaderArray)
-      ### Pushing an array to a Leaderboard widget
-      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
-        "leaderboard" => leaderArray}}
-      # Convert to JSON
-      jsonData = parameters.to_json()
-      # Form request
-      urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
-      # Make request
-          ) do |curl|
-            curl.headers['Accept'] = 'application/json'
-            curl.headers['Content-Type'] = 'application/json'
-          end
+  ## Pushing a geographic location (latitude and longitude) to a Map widget
+  def push_geo(stream, lat, long)
+    push stream, 'latitude' => lat, 'longitude' => long
   end
-  
-  def self.pushList(streamName, listArray)
-      ### Pushing an array to a List widget
-      parameters = {"accessKey" => @@accessKey, "streamName" => streamName, "point" => {
-        "list" => listArray}}
-      # Convert to JSON
-      jsonData = parameters.to_json()
-      # Form request
-      urlRequest = Curl::Easy.http_post("https://beta.leftronic.com/customSend/", jsonData
-      # Make CURL request
-          ) do |curl|
-            curl.headers['Accept'] = 'application/json'
-            curl.headers['Content-Type'] = 'application/json'
-          end
+
+  # Pushing a title and message to a Text Feed widget
+  def push_text(stream, title, message)
+    push stream, 'title' => title, 'msg' => message
+  end
+
+  # Pushing an array to the Leaderboard widget
+  def self.push_leaderboard(stream, leaders)
+    post stream, 'leaderboard' => leaders
+  end
+
+  # Pushing an array to the List widget
+  def self.pushList(streamName, list)
+    post stream, 'list' => list
+  end
+
+  protected
+
+  def post(parameters)
+    Curl::Easy.http_post(@url, parameters.to_json) do |curl|
+      curl.headers['Accept'] = 'application/json'
+      curl.headers['Content-Type'] = 'application/json'
+    end
   end
 
 end
