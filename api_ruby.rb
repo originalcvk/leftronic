@@ -11,8 +11,7 @@ class Leftronic
 
   # Pushing anything to a widget
   def push(stream, parameters)
-    parameters.merge!({ 'accessKey' => @key, 'streamName' => stream })
-    post parameters
+    post parameters.merge({ 'accessKey' => @key, 'streamName' => stream })
   end
 
   # Pushing a Number to a widget
@@ -36,7 +35,7 @@ class Leftronic
   end
 
   # Pushing an array to the List widget
-  def self.pushList(streamName, list)
+  def self.push_list(streamName, list)
     post stream, 'list' => list
   end
 
