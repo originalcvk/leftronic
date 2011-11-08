@@ -39,7 +39,7 @@ Javascript
 
 *Note*: Because Javascript is rendered by the browser, your API access key will be clearly visible in plain text. We recommend using our PHP, Python, or Ruby API libraries. If you need to use the Javascript API and have concerns about abuse or misuse of your private key, please feel free to send us an email at <support@leftronic.com>.
 
-Start by downloading the most recent version of our Javascript API at https://github.com/sonofabell/leftronic/blob/master/api_javascript.js.
+Start by downloading the most recent version of our Javascript API at https://github.com/sonofabell/leftronic/blob/master/leftronic.js.
 
 ### Dependencies
 
@@ -58,7 +58,7 @@ var accessKey = "YOUR_ACCESS_KEY";
 Add the file to the header of your web pages with the appropriate path linking to the location of your file:
 
 ```javascript
-<script type="text/javascript" src="your/path/api_javascript.js"></script>
+<script type="text/javascript" src="your/path/leftronic.js"></script>
 ```
 
 Here are some example functions to push to your dashboard. Be sure you have configured the correct widgets to accept custom data points. Also, be sure that you have entered your API access key correctly.
@@ -104,7 +104,7 @@ pushList("yourListStream", listArray);
 PHP
 ---
 
-Start by downloading the most recent version of our PHP API at https://github.com/sonofabell/leftronic/blob/master/api_php.php.
+Start by downloading the most recent version of our PHP API at https://github.com/sonofabell/leftronic/blob/master/leftronic.php.
 
 ### Dependencies
 
@@ -161,7 +161,7 @@ Python
 
 **_Note_**: We also have a Leftronic Python Package that offers the same functionality. You can download it on [Github](https://github.com/sonofabell/leftronic-python) or on the [Python Package Index](http://pypi.python.org/pypi/leftronic).
 
-Start by downloading the most recent version of our Python API at https://github.com/sonofabell/leftronic/blob/master/api_python.py.
+Start by downloading the most recent version of our Python API at https://github.com/sonofabell/leftronic/blob/master/leftronic.py.
 
 ### Dependencies
 
@@ -175,7 +175,7 @@ import json
 Import the file. Your location may vary.
 
 ```python
-from api_python import Leftronic
+from leftronic import Leftronic
 ```
 
 Create a class instance with your API key. Feel free to name it whatever you'd like.
@@ -229,7 +229,7 @@ Ruby
 
 **_Note_**: We also have a Leftronic Ruby Gem that offers the same functionality. You can download it on [Github](https://github.com/sonofabell/leftronic-ruby) or on [RubyGems](https://rubygems.org/gems/leftronicapi).
 
-Start by downloading the most recent version of our Ruby API at https://github.com/sonofabell/leftronic/blob/master/api_ruby.rb.
+Start by downloading the most recent version of our Ruby API at https://github.com/sonofabell/leftronic/blob/master/leftronic.rb.
 
 ### Dependencies
 
@@ -244,7 +244,7 @@ require 'json'
 Import the file. Your location may vary.
 
 ```ruby
-require 'api_ruby'
+require 'leftronic'
 ```
 
 Create a class instance with your API key. Feel free to name it whatever you'd like.
