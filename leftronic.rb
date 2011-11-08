@@ -20,8 +20,8 @@ class Leftronic
   end
 
   ## Pushing a geographic location (latitude and longitude) to a Map widget
-  def push_geo(stream, lat, long)
-    push stream, 'latitude' => lat, 'longitude' => long
+  def push_geo(stream, lat, long, color=nil)
+    push stream, 'latitude' => lat, 'longitude' => long, 'color' => color
   end
 
   # Pushing a title and message to a Text Feed widget
