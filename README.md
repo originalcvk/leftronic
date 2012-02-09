@@ -275,11 +275,11 @@ update = leftronic.push_text "yourTextStream", "This is my title.", "Hello World
 A leaderboard widget requires a hash. The widget will display the hash entries sorted by value.
 
 ```ruby
-update = Leftronic.push_leaderboard "yourBoardStream", some_hash
+update = leftronic.push_leaderboard "yourBoardStream", some_hash
 ```
 Or
 ```ruby
-update = Leftronic.push_leaderboard "yourBoardStream", 'Johnny' => 84, 'Jamie' => 75, 'Lance' => 62
+update = leftronic.push_leaderboard "yourBoardStream", 'Johnny' => 84, 'Jamie' => 75, 'Lance' => 62
 ```
 
 Finally, let's push an array to a list widget.
