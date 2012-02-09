@@ -277,7 +277,6 @@ A leaderboard widget requires a hash. The widget will display the hash entries s
 ```ruby
 update = leftronic.push_leaderboard "yourBoardStream", some_hash
 ```
-Or
 ```ruby
 update = leftronic.push_leaderboard "yourBoardStream", 'Johnny' => 84, 'Jamie' => 75, 'Lance' => 62
 ```
@@ -287,7 +286,6 @@ Finally, let's push an array to a list widget.
 ```ruby
 update = leftronic.push_list "yourListStream", some_array
 ```
-Or
 ```ruby
 update = leftronic.push_list "yourListStream", 'Elizabeth', 'Marchall', 'Claire', 'Nolan'
 ```
