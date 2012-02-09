@@ -1,51 +1,83 @@
+require 'net/http'
+require 'net/https'
 require 'rubygems'
-require 'curb'
 require 'json'
 
 class Leftronic
+  ALLOWED_COLORS = [:red, :yellow, :green, :blue, :purple]
+  attr_accessor :key
+  def url=(url)
+    @url = URI(url.to_s)
+  end
+  def url
+    @url.to_s
+  end
 
   def initialize(key, url='https://beta.leftronic.com/customSend/')
     @key = key
-    @url = url
+    self.url = url
   end
 
-  # Pushing anything to a widget
-  def push(stream, parameters)
-    post parameters.merge({ 'accessKey' => @key, 'streamName' => stream })
+  # Push anything to a widget
+  def push(stream, object)
+    post stream, object
   end
 
-  # Pushing a Number to a widget
+  # Push a Number to a widget
   def push_number(stream, point)
-    push stream, 'point' => point
+    post stream, point
   end
 
-  ## Pushing a geographic location (latitude and longitude) to a Map widget
+  # Push a geographic location (latitude and longitude) to a Map widget
   def push_geo(stream, lat, long, color=nil)
-    push stream, 'latitude' => lat, 'longitude' => long, 'color' => color
+    post stream, 'latitude' => lat, 'longitude' => long, 'color' => color
   end
 
-  # Pushing a title and message to a Text Feed widget
+  # Push a title and message to a Text Feed widget
   def push_text(stream, title, message)
-    push stream, 'title' => title, 'msg' => message
+    post stream, 'title' => title, 'msg' => message
   end
 
-  # Pushing an array to the Leaderboard widget
-  def self.push_leaderboard(stream, leaders)
-    post stream, 'leaderboard' => leaders
+  # Push a hash to a Leaderboard widget
+  def push_leaderboard(stream, hash)
+    leaderboard = hash.inject([]) do |array, (key, value)|
+      array << {'name' => key, 'value' => value}
+    end
+    post stream, 'leaderboard' => leaderboard
   end
 
-  # Pushing an array to the List widget
-  def self.push_list(streamName, list)
-    post stream, 'list' => list
+  # Push an array to a List widget
+  def push_list(stream, array)
+    post stream, 'list' => array.map{|item| {'listItem' => item}}
   end
 
   protected
 
-  def post(parameters)
-    Curl::Easy.http_post(@url, parameters.to_json) do |curl|
-      curl.headers['Accept'] = 'application/json'
-      curl.headers['Content-Type'] = 'application/json'
-    end
+  def post(stream, params)
+    request = build_request(stream, params)
+    connection = build_connection
+    connection.start{|http| http.request request}
   end
 
+  def build_request(stream, params)
+    request = Net::HTTP::Post.new @url.request_uri
+    request['Accept'] = 'application/json'
+    request['Content-Type'] = 'application/json'
+    request.body = {
+      'accessKey' => @key,
+      'streamName' => stream,
+      'point' => params
+    }.to_json
+    request
+  end
+
+  def build_connection # NOTE: Does not open the connection
+    connection = Net::HTTP.new @url.host, @url.port
+    if @url.scheme == 'https'
+      connection.use_ssl = true
+      connection.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
+    connection
+  end
 end
+
