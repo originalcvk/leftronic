@@ -47,8 +47,8 @@ class Leftronic
   end
 
   # Push an array to a List widget
-  def push_list(stream, array)
-    post stream, 'list' => array.map{|item| {'listItem' => item}}
+  def push_list(stream, *array)
+    post stream, 'list' => array.flatten.map{|item| {'listItem' => item}}
   end
 
   protected
